@@ -5,18 +5,18 @@ services:
             context: .
             dockerfile: ./containers/application/dockerfile
         ports: 
-        - "3000:3000"
+        - "${APP_PORT}:3000"
         depends_on:
         - postgres
         environment: 
-        - NODE_ENV=production
-        - POSTGRES_PORT=5432
-        - POSTGRES_USER=postgres
-        - POSTGRES_HOST=postgres
-        - POSTGRES_DATABASE=Toro
-        - POSTGRES_PASSWORD=123456
-        command: sh -c "dockerize -wait tcp://postgres:5432 -timeout 300s -wait-retry-interval 1s node main.js"
+        - NODE_ENV=${NODE_ENV}
+        - POSTGRES_PORT=${POSTGRES_PORT}
+        - POSTGRES_USER=${POSTGRES_USER}
+        - POSTGRES_HOST=${POSTGRES_HOST}
+        - POSTGRES_DATABASE=${POSTGRES_DATABASE}
+        - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+        command: sh -c "dockerize -wait tcp://postgres:${POSTGRES_PORT} -timeout 300s -wait-retry-interval 1s node main.js"
     postgres:
         build: ./containers/database
         ports: 
-        - "5432:5432"
+        - "${POSTGRES_PORT}:5432"
