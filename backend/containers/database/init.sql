@@ -27,3 +27,19 @@ CREATE TABLE user_assets (
   asset_id INTEGER REFERENCES assets(id),
   amount INTEGER
 );
+
+INSERT INTO users (name, cpf) VALUES ('João', '12345678900');
+INSERT INTO users (name, cpf) VALUES ('Maria', '23456789011');
+
+INSERT INTO assets (symbol, current_price) VALUES ('PETR4', 28.44);
+INSERT INTO assets (symbol, current_price) VALUES ('SANB11', 40.77);
+INSERT INTO assets (symbol, current_price) VALUES ('VALE3', 103.11);
+
+INSERT INTO accounts (current_balance, cpf) VALUES (234.0, '12345678900');
+INSERT INTO accounts (current_balance, cpf) VALUES (450.2, '23456789011');
+
+INSERT INTO user_assets (user_id, asset_id, amount) VALUES (1, 1, 2);
+INSERT INTO user_assets (user_id, asset_id, amount) VALUES (1, 2, 3);
+INSERT INTO user_assets (user_id, asset_id, amount) VALUES (1, 3, 4);
+INSERT INTO user_assets (user_id, asset_id, amount) VALUES (2, 3, 5);
+INSERT INTO user_assets (user_id, asset_id, amount) VALUES (2, 1, 2);

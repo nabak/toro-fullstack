@@ -1,28 +1,29 @@
 import { Injectable } from "@nestjs/common";
 import { UserPositionResponse } from "../core/dto/userPositionResponse";
-import { AssetPositionResponse } from "../core/dto/assetPosition.dto";
+import { AssetPositionResponse } from "../core/dto/assetPositionResponse";
+import { AccountPersistence } from "../persistence/accountPersistence";
+import { UserAssetsPersistence } from "../persistence/userAssetsPersistence";
 
 @Injectable()
 export class UserPositionService {
-    constructor() {}
+    constructor(
+        private accountPersistence: AccountPersistence,
+        private userAssetsPersistence: UserAssetsPersistence
+    ) {}
 
-    async getUserPosition(): Promise<UserPositionResponse> {
-        const account = {
-            balance: 234.0,
-        };
+    async getUserPosition(userCpf: string): Promise<UserPositionResponse> {
+        const account = await this.accountPersistence.getAccountByCPF(userCpf);
+        const userAssets = await this.userAssetsPersistence.getUserAssetsByCPF(
+            userCpf
+        );
 
-        const positions: AssetPositionResponse[] = [
-            {
-                symbol: "PETR4",
-                amount: 2,
-                currentPrice: 28.44,
-            },
-            {
-                symbol: "SANB11",
-                amount: 3,
-                currentPrice: 40.77,
-            },
-        ];
+        const positions: AssetPositionResponse[] = userAssets.map((item) => {
+            return new AssetPositionResponse(
+                item.asset.symbol,
+                item.amount,
+                item.asset.currentPrice
+            );
+        });
 
         const consolidated =
             account.balance +

@@ -1,4 +1,4 @@
-import { AssetPositionResponse } from "./assetPosition.dto";
+import { AssetPositionResponse } from "./assetPositionResponse";
 
 export class UserPositionResponse {
     checkingAccountAmount: number;
