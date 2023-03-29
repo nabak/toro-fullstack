@@ -1,0 +1,22 @@
+version: '1'
+services: 
+    toro-api:
+        build: 
+            context: .
+            dockerfile: ./containers/application/dockerfile
+        ports: 
+        - "${APP_PORT}:3000"
+        depends_on:
+        - postgres
+        environment: 
+        - NODE_ENV=${NODE_ENV}
+        - POSTGRES_PORT=${POSTGRES_PORT}
+        - POSTGRES_USER=${POSTGRES_USER}
+        - POSTGRES_HOST=${POSTGRES_HOST}
+        - POSTGRES_DATABASE=${POSTGRES_DATABASE}
+        - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+        command: sh -c "dockerize -wait tcp://postgres:${POSTGRES_PORT} -timeout 300s -wait-retry-interval 1s node main.js"
+    postgres:
+        build: ./containers/database
+        ports: 
+        - "${POSTGRES_PORT}:5432"
