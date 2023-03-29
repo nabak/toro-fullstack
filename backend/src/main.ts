@@ -5,6 +5,8 @@ import { SwaggerModule, DocumentBuilder } from "@nestjs/swagger";
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
 
+    app.enableCors();
+    
     const options = new DocumentBuilder()
         .setTitle("API do Desafio Toro Fullstack")
         .setDescription("Documentação da API do Desafio Toro Fullstack")
@@ -14,6 +16,6 @@ async function bootstrap() {
     const document = SwaggerModule.createDocument(app, options);
     SwaggerModule.setup("/docs", app, document);
 
-    await app.listen(3000);
+    await app.listen(5000);
 }
 bootstrap();
