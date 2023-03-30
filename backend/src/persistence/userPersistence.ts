@@ -11,6 +11,10 @@ export class UserPersistence {
 
         const result = await this.pool.query(sqlCommand, [id]);
         const userRow = result.rows[0];
+
+        if (!userRow) {
+            return null;
+        }
         
         return new User(userRow.id, userRow.cpf, userRow.name);
     }

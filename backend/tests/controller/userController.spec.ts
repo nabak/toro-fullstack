@@ -7,7 +7,7 @@ import { UserPositionResponse } from "../../src/core/dto/userPositionResponse";
 import { HttpModule } from "@nestjs/axios";
 import { AccountPersistence } from "../../src/persistence/accountPersistence";
 import { UserAssetsPersistence } from "../../src/persistence/userAssetsPersistence";
-import { DatabaseModule } from "../../src/core/database/database";
+import { DatabaseModule } from "../../src/core/database/connectDatabase";
 
 describe("UserController", () => {
     let userController;

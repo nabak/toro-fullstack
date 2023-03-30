@@ -1,6 +1,6 @@
 import { Module } from "@nestjs/common";
 import { UserController } from "./controller/userController";
-import { DatabaseModule } from "./core/database/database";
+import { DatabaseModule } from "./core/database/connectDatabase";
 import { AccountPersistence } from "./persistence/accountPersistence";
 import { UserAssetsPersistence } from "./persistence/userAssetsPersistence";
 import { UserPersistence } from "./persistence/userPersistence";
