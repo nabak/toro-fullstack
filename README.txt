@@ -13,6 +13,10 @@ O Docker Compose irá baixar as imagens necessárias e criar os contêineres Doc
 API http://localhost:5000
 BD 5432
 
+A API conta com um Swagger demonstrativo e foi construída seguindo a abordagem API first, utilizando um mock do Swagger. Com esse contrato, podemos avançar, paralelamente o desenvolvimento, tanto do frontend quanto o backend.
+
+Também foi adicionado um pequeno e demonstrativo cache para resolução de latência de endpoints. Podemos adotar uma abordagem aqui de expirar o cache por um período de tempo ou quando uma requisição bate no verbo POST do contexto daquele cache, renovando-o assim.
+
 Além disso, no backend, fizemos a integração com um banco de dados PostgreSQL. Já incluímos alguns dados iniciais para facilitar o desenvolvimento e teste da aplicação.
 
 Frontend
