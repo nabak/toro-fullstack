@@ -11,7 +11,7 @@ export class UserPositionService {
         private userAssetsPersistence: UserAssetsPersistence
     ) {}
 
-    async getUserPosition(userCpf: string): Promise<UserPositionResponse> {
+    async getUserPositions(userCpf: string): Promise<UserPositionResponse> {
         const account = await this.accountPersistence.getAccountByCPF(userCpf);
         const userAssets = await this.userAssetsPersistence.getUserAssetsByCPF(
             userCpf
